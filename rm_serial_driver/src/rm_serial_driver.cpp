@@ -77,7 +77,7 @@ RMSerialDriver::RMSerialDriver(const rclcpp::NodeOptions & options)
   aiming_point_.color.g = 1.0;
   aiming_point_.color.b = 1.0;
   aiming_point_.color.a = 1.0;
-  aiming_point_.lifetime = rclcpp::Duration::from_seconds(0.1);Subscription
+  aiming_point_.lifetime = rclcpp::Duration::from_seconds(0.1);
   aim_sub_.subscribe(this, "/tracker/target", rclcpp::SensorDataQoS().get_rmw_qos_profile());
   aim_time_info_sub_.subscribe(this, "/time_info/aim");
   rune_sub_.subscribe(this, "/tracker/rune");

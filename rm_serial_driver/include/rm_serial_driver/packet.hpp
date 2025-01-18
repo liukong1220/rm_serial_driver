@@ -65,12 +65,14 @@ struct SendPacketTwist
   float angular_z;
   uint16_t cheksum = 0;
 } __attribute__((packed));
+
 inline ReceivePacket fromVector(const std::vector<uint8_t> & data)
 {
   ReceivePacket packet;
   std::copy(data.begin(), data.end(), reinterpret_cast<uint8_t *>(&packet));
   return packet;
 }
+
 
 inline std::vector<uint8_t> toVector(const SendPacket & data)
 {
@@ -80,6 +82,16 @@ inline std::vector<uint8_t> toVector(const SendPacket & data)
     reinterpret_cast<const uint8_t *>(&data) + sizeof(SendPacket), packet.begin());
   return packet;
 }
+
+inline std::vector<uint8_t> toVector(const SendPacketTwist & data)
+{
+  std::vector<uint8_t> packet(sizeof(SendPacketTwist));
+  std::copy(
+    reinterpret_cast<const uint8_t *>(&data),
+    reinterpret_cast<const uint8_t *>(&data) + sizeof(SendPacketTwist), packet.begin());
+  return packet;
+}
+
 
 }  // namespace rm_serial_driver
 
